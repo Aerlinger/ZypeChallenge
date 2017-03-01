@@ -43,6 +43,8 @@ GEM
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (7.1.4)
+    autoprefixer-rails (6.5.3)
+      execjs
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.7.1)
@@ -211,6 +213,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   byebug
   capybara
   capybara-webkit
