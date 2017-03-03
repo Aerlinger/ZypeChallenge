@@ -29,3 +29,5 @@ group :test  do
   gem 'rspec-retry'
   gem 'selenium-webdriver', '<3.0.0'
 end
+
+gem 'mini_racer', platforms: :ruby

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactOnRails from 'react-on-rails';
 
 export default class Login extends React.Component {
   render() {
@@ -7,3 +8,5 @@ export default class Login extends React.Component {
     </div>
   }
 }
+
+ReactOnRails.register({ Login });
