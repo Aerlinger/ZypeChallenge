@@ -1,5 +1,5 @@
 <%= react_component "Login", props: {
-    client_id: Rails.application.secrets.client_id,
-    client_secret: Rails.application.secrets.client_secret,
+    client_id: ENV['CLIENT_ID'],
+    client_secret: ENV['CLIENT_SECRET'],
     target_video_id: params[:target_video_id]
 } %>
