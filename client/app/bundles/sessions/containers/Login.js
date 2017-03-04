@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {authenticate} from '../services/ZypeAuthApi';
-import UserAuthStore from '../services/UserAuthStore';
+import UserAuthStore from '../../../../libs/UserAuthStore';
 
 let styles = {
   form: {
@@ -72,6 +72,7 @@ export default class Login extends React.Component {
 
       UserAuthStore.authenticateUser(result.access_token);
 
+      // TODO: react-router would be a good alternative here
       window.location.replace("/videos");
     }).catch((error) => {
       //  Failed login
