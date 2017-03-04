@@ -40,7 +40,7 @@ export default class VideoPlayer extends Component {
   getFreeEmbedScript() {
     const {app_key} = this.props;
 
-    script.src = `https://player.zype.com/embed/${this.props._id}.js?autoplay=true&app_key=${app_key}`;
+    return `https://player.zype.com/embed/${this.props._id}.js?autoplay=true&app_key=${app_key}`;
   }
 
   getSubscriptionEmbedScript() {
