@@ -20,7 +20,7 @@ export default class Videos extends Component {
     return (
         <div className="container">
           <div className="row">
-            <div className="col-sm-9">
+            <div className="col-sm-12">
               <h3>All Videos</h3>
               <VideoFilter onUpdate={this.handleFilterUpdate} />
 

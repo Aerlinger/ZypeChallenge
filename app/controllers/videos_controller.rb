@@ -5,5 +5,6 @@ class VideosController < ApplicationController
 
   # Display individual video
   def show
+    @_id = params[:id]
   end
 end

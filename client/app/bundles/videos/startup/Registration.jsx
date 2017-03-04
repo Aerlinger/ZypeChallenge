@@ -1,5 +1,6 @@
 import ReactOnRails from 'react-on-rails';
 
+import VideoPlayer from '../containers/VideoPlayer.js';
 import Videos from '../containers/Videos.js';
 
 ReactOnRails.setOptions({
@@ -7,5 +8,6 @@ ReactOnRails.setOptions({
 });
 
 ReactOnRails.register({
+  VideoPlayer,
   Videos
 });
