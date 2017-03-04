@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import VideoListItem from './VideoListItem';
-import {getVideos} from '../services/zype-videos-api'
+import {getVideos} from '../services/ZypeVideosApi'
 
 export default class VideoList extends Component {
   constructor() {

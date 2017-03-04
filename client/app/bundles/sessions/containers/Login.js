@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
+import {authenticate} from '../services/ZypeAuthApi';
+import UserAuthStore from '../services/UserAuthStore';
 
 let styles = {
   form: {
@@ -24,13 +26,15 @@ export default class Login extends React.Component {
       localStorage.removeItem('successMessage');
     }
 
+    const { default_password, default_email } = this.props;
+
     // set the initial component state
     this.state = {
       error: "",
       successMessage: "",
       user: {
-        email: 'test@test.com',
-        password: 'password'
+        email: default_email,
+        password: default_password
       }
     };
 
@@ -38,17 +42,41 @@ export default class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /**
+   * Called when form is submitted.
+   *
+   * Make an authentication call to Zype's OAuth API and redirect if applicable.
+   *
+   * @param event
+   */
   handleSubmit(event) {
     event.preventDefault();
 
+    // Reset error/success message:
     this.setState({
       errorMessage: null,
       successMessage: null
     });
 
     let { user } = this.state;
+    const { client_id, client_secret } = this.props;
 
-    console.log("SUBMIT! State:", this.state)
+    authenticate({
+      client_id: client_id,
+      client_secret: client_secret,
+      username: user.email,
+      password: user.password
+    }).then((result) => {
+      //  Successful login
+      this.setState({successMessage: 'Login successful!'});
+
+      UserAuthStore.authenticateUser(result.access_token);
+
+      window.location.replace("/videos");
+    }).catch((error) => {
+      //  Failed login
+      this.setState({errorMessage: 'Authentication failed. Please check your credentials and try again.'});
+    });
   }
 
   handleChange(event) {
@@ -56,19 +84,9 @@ export default class Login extends React.Component {
     const user = this.state.user;
     user[field] = event.target.value;
 
-    console.log("change", event, this.state);
-
     this.setState({
       user
     });
-  }
-
-  onFailure() {
-
-  }
-
-  onSuccess() {
-
   }
 
   successLabel() {
@@ -89,7 +107,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    let { user, error, successMessage } = this.state;
+    let { user } = this.state;
 
     return <div className="container">
       <form className="form-signin"
@@ -129,11 +147,7 @@ export default class Login extends React.Component {
             value={user.password}
             required/>
 
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"/> Remember me
-          </label>
-        </div>
+        <hr />
 
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
@@ -141,3 +155,15 @@ export default class Login extends React.Component {
     </div>
   }
 }
+
+Login.propTypes = {
+  default_email: PropTypes.string,
+  default_password: PropTypes.string,
+  client_id: PropTypes.string.isRequired,
+  client_secret: PropTypes.string.isRequired
+};
+
+Login.defaultProps = {
+  default_email: 'test@test.com',
+  default_password: 'password'
+};

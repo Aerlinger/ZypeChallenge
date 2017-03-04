@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import moment from 'moment';
 
-import {getVideo} from '../services/zype-videos-api'
+import {getVideo} from '../services/ZypeVideosApi'
 
 export default class VideoPlayer extends Component {
   constructor() {
