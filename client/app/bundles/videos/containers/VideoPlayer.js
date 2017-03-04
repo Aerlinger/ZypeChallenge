@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import moment from 'moment';
 
+import UserAuthStore from '../../../../libs/UserAuthStore';
 import {getVideo} from '../services/ZypeVideosApi'
 
 export default class VideoPlayer extends Component {
@@ -11,27 +12,47 @@ export default class VideoPlayer extends Component {
     }
   }
 
+  needsAuthRedirect() {
+    const {video} = this.state;
+    const isUserAuthenticated = UserAuthStore.isUserAuthenticated();
+
+    return !isUserAuthenticated && video.subscription_required
+  }
+
   componentWillMount() {
     const {app_key, _id} = this.props;
 
     getVideo(app_key, _id)
         .then(({video}) => {
-          console.log("VIDEO", video);
-
           this.setState({video});
+
+          if (this.needsAuthRedirect()) {
+            // TODO: react-router would be a good alternative here
+            window.location.replace(`/sessions/new?target_video_id=${_id}`);
+          }
         })
         .catch((error) => {
           console.warn(error)
         });
   }
 
-  componentDidMount() {
-    const {video} = this.state;
+  getFreeEmbedScript() {
     const {app_key} = this.props;
 
-    var script = document.createElement("script");
-
     script.src = `https://player.zype.com/embed/${this.props._id}.js?autoplay=true&app_key=${app_key}`;
+  }
+
+  getSubscriptionEmbedScript() {
+    const access_token = UserAuthStore.getToken();
+
+    return `https://player.zype.com/embed/${this.props._id}.js?autoplay=true&access_token=${access_token}`;
+  }
+
+  componentDidMount() {
+    let embed_src = UserAuthStore.isUserAuthenticated() ? this.getSubscriptionEmbedScript() : this.getFreeEmbedScript();
+    let script = document.createElement("script");
+
+    script.src = embed_src;
     script.async = true;
 
     document.body.appendChild(script);
@@ -69,7 +90,7 @@ export default class VideoPlayer extends Component {
 }
 
 VideoPlayer.propTypes = {
-  _id: PropTypes.string.required
+  _id: PropTypes.string.isRequired
 };
 
 VideoPlayer.defaultProps = {

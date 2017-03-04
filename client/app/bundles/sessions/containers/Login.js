@@ -59,7 +59,7 @@ export default class Login extends React.Component {
     });
 
     let { user } = this.state;
-    const { client_id, client_secret } = this.props;
+    const { client_id, client_secret, target_video_id } = this.props;
 
     authenticate({
       client_id: client_id,
@@ -73,7 +73,11 @@ export default class Login extends React.Component {
       UserAuthStore.authenticateUser(result.access_token);
 
       // TODO: react-router would be a good alternative here
-      window.location.replace("/videos");
+      if (target_video_id) {
+        window.location.replace(`/videos/${target_video_id}`);
+      } else {
+        window.location.replace("/videos");
+      }
     }).catch((error) => {
       //  Failed login
       this.setState({errorMessage: 'Authentication failed. Please check your credentials and try again.'});
@@ -161,7 +165,8 @@ Login.propTypes = {
   default_email: PropTypes.string,
   default_password: PropTypes.string,
   client_id: PropTypes.string.isRequired,
-  client_secret: PropTypes.string.isRequired
+  client_secret: PropTypes.string.isRequired,
+  target_video_id: PropTypes.string
 };
 
 Login.defaultProps = {
