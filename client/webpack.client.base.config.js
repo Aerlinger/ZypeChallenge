@@ -40,7 +40,7 @@ module.exports = {
 
     // This will contain the app entry points defined by webpack.hot.config and webpack.rails.config
     app: [
-      './app/SampleComponent.js'
+      './app/bundles/videos/startup/Registration'
     ],
   },
   resolve: {
