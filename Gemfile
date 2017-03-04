@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'listen', '~> 3.0.5'
+gem 'listen'
 gem 'react_on_rails', '~> 6.1'
+gem 'rails-html-sanitizer'
 gem 'autoprefixer-rails'
+gem 'awesome_print'
 
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'

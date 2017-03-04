@@ -45,6 +45,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.6)
       execjs
+    awesome_print (1.7.0)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.12.1)
@@ -216,17 +217,19 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  awesome_print
   byebug
   capybara
   capybara-webkit
   chromedriver-helper
   coveralls
   foreman
-  listen (~> 3.0.5)
+  listen
   mini_racer
   poltergeist
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-html-sanitizer
   react_on_rails (~> 6.1)
   rspec-rails (~> 3)
   rspec-retry
