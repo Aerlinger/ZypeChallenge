@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 
-import UserAuthStore from '../../../../libs/UserAuthStore';
+import UserAuthStore from '../../../libs/UserAuthStore';
 
 export default class TopHeader extends Component {
   logoutAndRedirect(event) {

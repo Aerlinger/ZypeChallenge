@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import moment from 'moment';
 
 import VideoDescription from '../components/VideoDescription';
-import UserAuthStore from '../../../../libs/UserAuthStore';
+import UserAuthStore from '../../../libs/UserAuthStore';
 import {getVideo} from '../services/ZypeVideosApi'
 
 export default class VideoPlayer extends Component {
@@ -33,7 +33,7 @@ export default class VideoPlayer extends Component {
           }
         })
         .catch((error) => {
-          console.warn(error)
+
         });
   }
 
@@ -64,18 +64,17 @@ export default class VideoPlayer extends Component {
     const {_id} = this.props;
 
     return <div className="container">
-      <h4>
-        <a href={`/videos/${video._id}`}>{video.title}</a>
-      </h4>
+
+      { video.title ? "" : "Video not found!" }
 
       <div id={`zype_${_id}`}></div>
 
       <div className="row">
         <div className="col-sm-12">
           <hr />
-          <VideoDescription
-              video={video}
-          />
+          {
+            <VideoDescription video={video}/>
+          }
         </div>
       </div>
     </div>

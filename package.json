@@ -13,6 +13,8 @@
     "build:production": "(cd client && npm run build:production --silent)",
     "build:production:client": "(cd client && npm run build:production:client --silent)",
     "build:production:server": "(cd client && npm run build:production:server --silent)",
+    "build:dev:client": "(cd client && npm run build:dev:client --silent)",
+    "build:dev:server": "(cd client && npm run build:dev:server --silent)",
     "build:client": "(cd client && npm run build:client --silent)",
     "build:server": "(cd client && npm run build:server --silent)",
     "hot-assets": "(cd client && npm run hot-assets)",

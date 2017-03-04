@@ -25,7 +25,9 @@
     "build:production": "NODE_ENV=production webpack --https --config webpack.client.rails.build.config.js",
     "build:development": "webpack -w --https --config webpack.config.js",
     "hot-assets": "babel-node server-rails-hot.js",
-    "build:server": "webpack --config webpack.server.rails.build.config.js"
+    "build:server": "webpack --config webpack.server.rails.build.config.js",
+    "build:dev:server": "webpack -w --https --config webpack.server.rails.build.config.js",
+    "build:dev:client": "webpack -w --https --config webpack.client.rails.build.config.js"
   },
   "dependencies": {
     "actioncable": "^5.0.1",

@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {authenticate} from '../services/ZypeAuthApi';
-import UserAuthStore from '../../../../libs/UserAuthStore';
+import UserAuthStore from '../../../libs/UserAuthStore';
 
 let styles = {
   form: {
