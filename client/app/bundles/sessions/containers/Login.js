@@ -79,7 +79,7 @@ export default class Login extends React.Component {
         window.location.replace("/videos");
       }
     }).catch((error) => {
-      //  Failed login
+      //  Failed login, show error message
       this.setState({errorMessage: 'Authentication failed. Please check your credentials and try again.'});
     });
   }
@@ -101,7 +101,6 @@ export default class Login extends React.Component {
       </div>
     }
   }
-
 
   errorLabel() {
     if (this.state.errorMessage) {

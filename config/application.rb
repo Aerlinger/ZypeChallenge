@@ -2,6 +2,7 @@ require_relative 'boot'
 
 require 'rails'
 
+# NOTE: We're not using ActiveRecord, ActiveJob, ActionCable, or TestUnit here
 %w(
   action_mailer/railtie
   action_controller/railtie
@@ -15,7 +16,6 @@ require 'rails'
 end
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module ZypeChallenge
