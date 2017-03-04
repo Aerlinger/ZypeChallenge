@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+
 import UserAuthStore from '../../../../libs/UserAuthStore';
 
 export default class TopHeader extends Component {
@@ -13,28 +14,34 @@ export default class TopHeader extends Component {
 
   loginButton() {
     if (UserAuthStore.isUserAuthenticated()) {
-      return <a href="#" onClick={this.logoutAndRedirect}>
+      return <a className="btn btn-primary" href="#" onClick={this.logoutAndRedirect}>
         Logout
       </a>;
     } else {
-      return <a href="/sessions/new">Login</a>;
+      return <a className="btn btn-primary" href="/sessions/new">Login</a>;
     }
   }
 
   render() {
-    return <div className="container">
-      <div className="header clearfix">
-        <nav>
-          <ul className="nav nav-pills pull-right">
-            <li role="presentation" className="active">
-              {
-                this.loginButton()
-              }
-            </li>
-          </ul>
-        </nav>
-        <h3 className="text-muted">Zype API Client</h3>
+    return <nav className="navbar navbar-inverse navbar-fixed-top">
+      <div className="container">
+        <div className="navbar-header">
+          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+          </button>
+          <a className="navbar-brand" href="#">Zype Video API Demo</a>
+        </div>
+        <div id="navbar" className="navbar-collapse collapse">
+          <div className="navbar-form navbar-right">
+          {
+            this.loginButton()
+          }
+          </div>
+        </div>
       </div>
-    </div>
+    </nav>
   }
 }

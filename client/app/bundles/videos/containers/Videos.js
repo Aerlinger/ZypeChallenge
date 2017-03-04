@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+
 import VideoFilter from '../components/VideoFilter'
 import VideoList from '../components/VideoList'
 

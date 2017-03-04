@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import moment from 'moment';
 
+import VideoDescription from '../components/VideoDescription';
 import UserAuthStore from '../../../../libs/UserAuthStore';
 import {getVideo} from '../services/ZypeVideosApi'
 
@@ -62,10 +63,6 @@ export default class VideoPlayer extends Component {
     const {video} = this.state;
     const {_id} = this.props;
 
-    const timeUpdated = moment(video.published_at).fromNow();
-
-    let duration = moment.duration(video.duration, 's').format("h:m:s");
-
     return <div className="container">
       <h4>
         <a href={`/videos/${video._id}`}>{video.title}</a>
@@ -75,14 +72,10 @@ export default class VideoPlayer extends Component {
 
       <div className="row">
         <div className="col-sm-12">
-          <div className="pull-right">
-            <strong>&#9734; {video.rating}</strong>
-            <strong>&#4292; {duration}</strong>
-          </div>
-
-          <p>{video.short_description}</p>
-
-          <time>Created {timeUpdated}</time>
+          <hr />
+          <VideoDescription
+              video={video}
+          />
         </div>
       </div>
     </div>
