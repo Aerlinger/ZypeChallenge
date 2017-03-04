@@ -17,7 +17,8 @@
     "build:dev:client": "(cd client && npm run build:dev:client --silent)",
     "build:dev:server": "(cd client && npm run build:dev:server --silent)",
     "hot-assets": "(cd client && npm run hot-assets)",
-    "start": "(cd client && npm run start --silent)"
+    "start": "(cd client && npm run start --silent)",
+    "postinstall": "cd client && npm install"
   },
   "repository": {
     "url": "https://github.com/aerlinger",
